@@ -1,0 +1,1 @@
+export {isFirstStringBiggerSecond} from './comparators';
