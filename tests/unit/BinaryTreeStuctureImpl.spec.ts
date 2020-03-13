@@ -59,23 +59,6 @@ describe('BinaryTreeStructureImpl', () => {
       });
     });
 
-    xdescribe(`if STRING VALUE < value of the PARENT NODE => `, () => {
-      describe(`CREATE NODE & ADD IT TO THE LAST LEAF in the LEFT BRANCH`, () => {
-        const rightChildNodeValue = 'bbb';
-        const root: Node = new Node('aaa');
-        const binaryTreeInst: BinaryTreeStructureImpl = new BinaryTreeStructureImpl(root);
-
-        binaryTreeInst.addNode(rightChildNodeValue);
-
-        expect(true).toBe(false);
-      });
-    });
-
-    xdescribe(`if STRING VALUE ===  value of the PARENT NODE`, () => {
-      describe(`NODE IS EXIST. DON'T DO ANYTHING`, () => {
-        expect(true).toBe(false);
-      });
-    });
   });
 
   describe(`Must be available FIND SUITABLE PARENT for potential node candidate`, () => {

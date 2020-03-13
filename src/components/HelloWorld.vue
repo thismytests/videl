@@ -1,6 +1,10 @@
 <template>
   <div>
     <div class="hello">
+
+      <div>Type some word </div>
+      <div>Press Enter</div>
+      <div>Will see implementation of binary tree as a string</div>
       <input type="text" v-on:keypress.enter="onAddNode">
     </div>
     <div>

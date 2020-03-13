@@ -1,5 +1,3 @@
-import {BinaryTreeStructure} from './types';
-
 import {isFirstStringBiggerSecond} from "./comparators/comparators";
 
 export class Node {
@@ -33,7 +31,7 @@ export class Node {
 }
 
 
-export class BinaryTreeStructureImpl implements BinaryTreeStructure {
+export class BinaryTreeStructureImpl {
   private _root: Node | null;
 
   get root(): Node | null {
@@ -50,7 +48,7 @@ export class BinaryTreeStructureImpl implements BinaryTreeStructure {
   }
 
   addNode(value: string): void {
-    if(this.root === null) {
+    if (this.root === null) {
       this._root = new Node(value);
       return;
     }
@@ -116,17 +114,25 @@ export class BinaryTreeStructureImpl implements BinaryTreeStructure {
     return parentNode;
   }
 
-  marshal(tree: BinaryTreeStructure): string {
+  marshal(tree: Node): string {
     if (this.root !== null) {
-      return this.root.toString()
+      return this.root.marshal()
     } else {
       throw new Error("Can't make marshal. Tree is empty")
     }
   }
 
-  unMarshal(str: string): BinaryTreeStructure {
-    return this;
-  }
+  unMarshal(str: string) {
+    try {
+      // check the correct number of separated characters
+      JSON.parse(str);
 
+      // todo... Nick Litvin... must be check for the correct nested
+      this._root = new Node(str);
+      return this._root;
+    } catch (err) {
+      console.error('', err);
+    }
+  }
 
 }
