@@ -63,19 +63,35 @@ describe('BinaryTreeStructureImpl', () => {
 
   describe(`Must be available FIND SUITABLE PARENT for potential node candidate`, () => {
     describe(`if STRING VALUE  >  VALUE of the ROOT NODE`, () => {
-      it(`POTENTIAL PARENT CANDIDATE will be FIND on the RIGHT BRANCH`, () => {
-        const rootNodeValue = 'aaa';
-        const rightChildNodeValue = 'bbb';
-        const newNodeValue = 'ccc';
+      describe(`POTENTIAL PARENT CANDIDATE will be FIND on the RIGHT BRANCH`, () => {
+        it(`test1`, () => {
+          const rootNodeValue = 'aaa';
+          const rightChildNodeValue = 'bbb';
+          const newNodeValue = 'ccc';
 
-        const root: Node = new Node(rootNodeValue, null, new Node(rightChildNodeValue));
+          const root: Node = new Node(rootNodeValue, null, new Node(rightChildNodeValue));
 
 
-        const binaryTreeInst: BinaryTreeStructureImpl = new BinaryTreeStructureImpl(root);
+          const binaryTreeInst: BinaryTreeStructureImpl = new BinaryTreeStructureImpl(root);
 
-        const result = binaryTreeInst.findSuitableParent(newNodeValue);
-        expect(result.value).toBe(rightChildNodeValue);
+          const result = binaryTreeInst.findSuitableParent(newNodeValue);
+          expect(result.value).toBe(rightChildNodeValue);
+        });
+
+        it(`test2`, () => {
+          const rootNodeValue = 'aaa';
+          const rightChildNodeValue = 'bbb';
+          const potentialParent = 'ccc';
+          const potentialChild = 'ddd';
+
+          const root: Node = new Node(rootNodeValue, null, new Node(rightChildNodeValue, null, new Node(potentialParent)));
+          const binaryTreeInst: BinaryTreeStructureImpl = new BinaryTreeStructureImpl(root);
+
+          const result = binaryTreeInst.findSuitableParent(potentialChild);
+          expect(result.value).toBe(potentialParent);
+        });
       });
+
     });
     describe(`if STRING VALUE  <  VALUE of the ROOT NODE`, () => {
       it(`POTENTIAL PARENT CANDIDATE will be FIND on the LAST LEFT BRANCH`, () => {
@@ -107,6 +123,28 @@ describe('BinaryTreeStructureImpl', () => {
       });
     });
 
+
+  });
+
+  describe(`Must be available to return size of elements`, () => {
+    it(`If there are NOT ITEMS in tree  => 0`, () => {
+      const inst: BinaryTreeStructureImpl = new BinaryTreeStructureImpl();
+      expect(inst.size()).toBe(0);
+    });
+
+    describe(`If TREE IS NOT EMPTY => tree's size`, () => {
+      describe(`Test #1`, () => {
+        it(`If TREE IS NOT EMPTY => tree's size`, () => {
+          const node: Node = new Node('1', new Node('2', new Node('3')))
+          const inst: BinaryTreeStructureImpl = new BinaryTreeStructureImpl(node);
+          const result = false;
+          const expectedResult = true;
+
+          expect(inst.size()).toBe(3);
+        });
+
+      });
+    });
 
   });
 

@@ -66,6 +66,13 @@ export class BinaryTreeStructureImpl {
     }
   }
 
+  size(): number {
+    if (this._root === null) {
+      return 0;
+    }
+
+    return 1;
+  }
 
   /**
    * find node which will be Suitable parent
@@ -102,7 +109,7 @@ export class BinaryTreeStructureImpl {
         }
       }
 
-      if (isContinueSearch) {
+      if (parentNode != null && str === parentNode.value) {
         isContinueSearch = false;
       }
     }
